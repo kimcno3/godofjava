@@ -1,4 +1,4 @@
-package example;
+package b.control;
 public class ControlIf{
     public static void main(String args[]){
         ControlIf control = new ControlIf();
