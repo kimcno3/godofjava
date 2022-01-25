@@ -47,9 +47,9 @@ public void printAge(){ // 매개변수 불필요
 }
 ```
 
-> 4, 5번 메소드 생성시 매개변수로 name이나 age를 가져오지 않아도 사용할 수 있습니다. (name은 **멤버변수**이기 때문!!)
+4, 5번 메소드 생성시 매개변수로 name이나 age를 가져오지 않아도 사용할 수 있습니다. (name은 **멤버변수**이기 때문!!)
 
-> 상세설명은 아래 추가 내용에서 자세히 다루겠습니다. [바로 가기](#1-멤버변수)
+> [멤버변수 상세 설명](https://github.com/kimcno3/godofjava/blob/main/volume1/chapter/plusDescription.md#%EB%A9%A4%EB%B2%84%EB%B3%80%EC%88%98)
 
 ### **6.` main()` 메소드에서 profile 이름으로 객체 생성**
 ```java
