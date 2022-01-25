@@ -8,7 +8,10 @@ public class Animal {
     int legCount;
     int iq;
     boolean hasWing;
-
+    // refactoring
+    String color;
+    int weight;
+    int height;
     public void move(){
         System.out.println("This is Animal method - move()");
     }
