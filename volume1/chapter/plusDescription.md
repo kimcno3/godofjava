@@ -42,8 +42,9 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 ## 멤버변수
 **멤버변수(Instance Variable)** 는 객체를 생성해야만 사용할 수 있는 변수를 의미하며 **객체 생성시, 해당 객체의 메소드에서 사용가능**합니다.
 
-**[직접해봅시다]()**에서 4,5번 메소드 또한 멤버변수를 사용하는 메소드였기에 따로 매개변수로 지정하지 않아도 사용이 가능했던 것입니다.
 > [참고 사이트](https://digiconfactory.tistory.com/entry/%EC%9E%90%EB%B0%94-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC-5-9-%EB%B3%80%EC%88%98-%EC%9C%A0%ED%9A%A8%EB%B2%94%EC%9C%84-Scope)
+
+<br>
 
 ## main 함수 실행 순서
 자바의 신 Github 저장소에서 찾은 **직접해봅시다** 의 [모범 코드](https://github.com/godofjava/GodOfJava2nd/blob/master/Chapter03/src/Profile.java)와 내가 작성한 코드를 비교해봤을 때, main() 메소드의 위치가 다른 것을 볼 수 있었다.
@@ -60,3 +61,342 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 그렇기 때문에 main 메소드가 클래스 내에서 가장 먼저 작성되어도 문제될 점은 없다.
 > [참고사이트](https://codingffler.tistory.com/16)
+
+<br>
+
+## 가비지 콜렉터(Garbage Collector)
+- **가비지(Garbage)** 란 객체나 배열을 가르키는 레퍼런스가 없는 경우를 의미합니다.
+- 메모리 확보 위해 가비지를 삭제하는 작업 자체는 **가비지 콜렉션**
+- 가비지 콜렉션을 하는 것이 **가비지 콜렉터**라고 합니다.
+> [참고 사이트](https://madplay.github.io/post/java-garbage-collection)
+
+<br>
+
+## `shortMax+1 === 32768` ?
+**4장 89페이지**에서 **shortMax**에서 1을 더하면 최소값이 나와야 하는데 최대값을 넘어선 값이 나와 당황했다. 그 이유를 찾아보니 short 타입의 값에 단순히 1을 더하면 **int 타입으로 타입이 자동 변환된다**고 한다.
+
+**구체적으로 설명하면**
+
+1. 정수 연산시에 int가 기본 타입이다.
+2. 게다가 다른 타입을 연산할 때 큰 타입으로 자동 변환된다고 한다.
+3. 또한 피연산자는 4byte 단위로 계산되어 4byte보다 작은 byte, short, char은 int로 자동 변환된다.
+
+그렇기 때문에 계산 오류를 막기 위해서는 (byte), (short) 코드를 연산식 앞에 추가해줘야 자동 타입 변환을 방지하여 예제에서 원하는 값을 구할 수 있습니다.
+
+해당 내용은 **4장 87페이지** 에서도 언급되는 부분입니다.
+> [참고 사이트1](https://kephilab.tistory.com/27)
+
+> [참고 사이트2](https://stackoverflow.com/questions/42682558/largest-java-short-32767-plus-1-not-turning-negative)
+
+<br>
+
+## 오버플로우(Intager Overflow)
+- 데이터 유형별 범위를 초과한 값을 할당한 경우 발생
+- `최대값+1`을 하면 `최소값`이 되는 경우를 의미합니다.
+- `최소값-1`을 하면 `최대값`이 되는 경우는 언더플로우라고 합니다.
+
+121 ~ 122페이지에 나오는 예제에서 short의 값으로 할당한 `256`과 `255`를 byte로 캐스팅 하는 경우, 0과 -1값이 나오는데 이런 경우를 오버플로우라고 하고, 두 경우를 자세히 살펴보면 다음과 같습니다.
+
+- (short)256 -> (byte)256
+```
+0000 0001 0000 0000 -> short일때 256이지만
+
+          0000 0000 -> byte로 형변환을 하면 0이 된다.
+```
+
+- (short)255 -> (byte)255
+```
+0000 0000 1111 1111 -> short일때 255의 모습
+
+          1111 1111 -> byte로 형변환을 했을 때
+```
+근데 위처럼 `1111 1111`이 `-1`이 되는 이유를 이해하지 못했다.
+
+개인적으로 생각해낸 해답은 최소값인 `-128`을 이진수로 표현하면 `1000 0000`이니까 이 점을 이용해서 `1111 1111`을 다시 표현해보면
+```
+1111 1111 -> 256
+= 1000 0000 + 0111 1111
+= -128 + 127
+= -1
+```
+그래서 `(byte)255`가 `-1`이 나오는 것이 아닐까 싶었다.
+
+<br>
+
+하지만 위와같은 계산법이 아니라 처음부터 컴퓨터는 **2진법에서 음수**를 **2의 보수**로 표현하기 때문이였다.
+
+**2의 보수**란 **양수를 표현하는 2진수에서 0과 1을 뒤집은 다음, +1을 해주는 방법**을 뜻하는데
+
+이를 예시로 자세히 살펴보면
+```
+(byte)1은 2진수로
+0000 0001 로 표현한다.
+
+그렇다면 (byte)-1을 2의 보수를 활용한 2진수로 표현할 때
+
+1. 0과 1의 위치를 뒤집는다.
+1111 1110
+
+2. +1을 해준다.
+1111 1111
+
+즉 8비트에서 1111 1111 은 -1이다.
+```
+
+**그렇기 때문에 255(2진수로 1111 1111)를 byte로 표현했을 때 -1값이 나오는 것이다.**
+
+좀 더 자세한 설명은 아레 참고 사이트에 잘 설명되어 있다.
+> [참고사이트](https://wikidocs.net/81918)
+
+<br>
+
+## toSting()
+- `toSting()` 메소드는 객체가 가지고 있는 정보를 문자열로 리턴하는 메소드
+- Java의 모든 클래스 중 가장 최상위 클래스인 'Object' 클래스의 메소드로서 사용자가 생성하는 클래스가 기본적으로 상속받게 되는 메소드
+- 객체가 가지고 있는 `toSting()` 메소드의 기본값은 '타입이름@고유번호'의 형태
+- 이를 재정의(오버라이딩)을 통해 바꿀 수 있다.
+
+> [참고사이트](https://selfdevelope.tistory.com/560)
+
+<br>
+
+## DTO 추가 설명
+DAO(Data Access Object)
+- DTO로 받은 데이터를 데이터베이스에 저장하거나 가져오는 역할을 수행하는 객체
+
+DTO(Data Transfer Object)
+- 계층 간 데이터 교환을 하기 위해 사용하는 객체
+- 로직을 가지지 않는 순수한 데이터 객체(getter & setter)
+
+VO(Value Object)
+- 값을 위해서만 사용되는 값 오브젝트
+- ReadOnly 특징을 가지고 있다.
+
+<br>
+
+## static 변수 추가 설명
+### P.204 ~ 205의 예제 코드
+```java
+public class ReferenceStaticVariable{
+    static String name; // 클래스변수 name
+    public ReferenceStaticVariable(){}
+    public ReferenceStaticVariable(String name){
+        this.name = name; // 매개변수를 클래스변수에 할당해라! 라는 의미
+    }
+    public static void main(String[] args){
+        ReferenceStaticVariable sample = new ReferenceStaticVariable();
+        sample.checkName();
+    }
+    public void checkName(){
+        ReferenceStaticVariable reference1 = new ReferenceStaticVariable("Kim");
+        System.out.println(reference1.name); // Kim
+        ReferenceStaticVariable reference2 = new ReferenceStaticVariable("Lee");
+        System.out.println(reference1.name); // Lee
+    }
+}
+```
+위 예제를 보면 같은 `reference1`객체의 `name`값을 출력했는데 출력값은 다른 것을 확인할 수 있다.(객체의 변수를 출력한 것처럼 보인다.)
+
+이는 매개변수값을 할당하는 변수 `name`이 클래스변수, 즉 **static**변수이기 때문에 위와 같은 결과값을 가지게 된건데, 자세히 설명하면 클래스 변수는 객체에 상관없이 하나의 메모리 주소만을 가지게 된다. 그렇기에 위 예제는 `reference1`만의 **인스턴스 변수**인 `name`에 매개변수값을 할당한 것이 아니라, 클래스 전체에 하나만 존재하는 **클래스변수**인 `name`에 매개변수 값을 할당한 것이다.(객체와는 무관하게 name이라는 변수는 해당 클래스에서 하나라는 뜻!)
+
+그러므로 `name`은 `Kim`으로 한번, `Lee`로 한번씩 값을 할당받은 것이다.
+
+> [참고 사이트](https://wikidocs.net/228)
+
+<br>
+
+## super() 상세 내용
+p.245 ~ 247에 `super()`에 대한 설명이 나오는데 몇몇 문장들이 이해가 안가서 추가 설명을 찾아봤다.
+
+`super()`가 정확히 어떤 의미를 가지는지 간단하게 설명하자면 **부모 클래스**를 가르킨다고 말할 수 있다. 반대의 개념으로는 `this`가 될 것이다.
+
+### 예시
+```java
+public class PrintInfo{
+    public static void main(String[] args){
+        Child child = new Child(); // 자식 클래스 생성
+
+        child.printParentAge(); // 부모클래스의 변수를 출력
+        child.printChildAge(); // 자식클래스의 변수를 출력
+    }
+}
+// 부모 클래스
+class Parent{
+    public Parent(){}
+    String name = "Kim";
+    int age = 56;
+}
+// 자식 클래스
+class Child extends Parent{
+    public Child(){}
+    String name = "Lee";
+    int age = 27;
+    // 자식클래스에서 부모클래스 변수 지정(super)
+    public void printParentAge(){
+        System.out.println(super.name + "의 나이는" + super.age + "입니다.");
+    }
+    // 자식클래스에서 자식클래스 변수 지정(this)
+    public void printChildAge(){
+        System.out.println(this.name + "의 나이는" + this.age + "입니다.");
+    }
+}
+```
+### 실행결과
+```
+Kim의 나이는56입니다.
+Lee의 나이는27입니다.
+```
+
+위 예시에서 보면 자식 클래스에서 `super.변수명`의 형식으로 코드를 작성하면 **부모클래스의 인스턴스변수를 지정**할 수 있다.
+
+반대로 `this.변수명`은 **해당 클래스의 인스턴스 변수를 지정**하게 된다.
+
+`자식 클래스를 컴파일할 때, 자동으로 super()이란 코드가 추가되어 컴파일한다??`
+
+super에 대한 개념을 간단하게 이해했어도 위 문장은 이해되지 않았는데 천천히 읽어보니 말 그대로 자식클래스를 컴파일할 때 코드 작성자가 적지 않아도 `super()`라는 코드가 추가된다는 말이였다. 이 말을 코드로 표현해보면 아래 예시와 같다.
+
+### 예시
+```java
+// 위 코드 생략
+
+class Child extends Parent{
+    public Child(){
+        // super();  -> 이 코드가 자동으로 추가된다.
+    }
+
+    // 아래 코드 생략
+}
+```
+
+그렇다면 부모 클래스의 생성자가 매개변수를 가지고 있다면 당연히 문제가 생기는 구조였다.
+
+자식 클래스에서 자동으로 생성되면서 부모클래스의 생성자를 가르키는 `super()` 코드는 매개변수값이 지정되어있지 않기 때문에 부모 클래스에서 매개변수를 가진 생성자를 선언했다면 자식 클래스에서도 매개변수값을 지정해줘야 하는 것이 맞다.
+
+### 예시
+```java
+// 위 코드 생략
+
+class Parent{
+    // 매개변수를 가진 생성자 선언
+    public Parent(String name){
+        this.name = name; // 매개변수를 인스턴스 변수로 지정
+    }
+    String name;
+    int age = 56;
+}
+
+class Child extends Parent{
+    public Child(){
+        // 부모클래스의 매개변수값 지정
+        super("Kim");
+    }
+
+    // 아래 코드 생략
+
+}
+```
+
+위 예제처럼 부모 클래스에서 매개변수를 가진 생성자를 선언했다면 자식클래스의 생성자에서 `super()`를 사용해 매개변수값을 동일한 자료형으로 지정해줘야 한다.
+
+> [참고사이트](https://crazykim2.tistory.com/551)
+
+<br>
+
+## 참조자료형 형변환 & `instanceof` 예약어 활용시 주의사항
+### 참조자료형 형변환
+- 자식 객체를 부모 객체로 형변환은 가능
+- 부모 객체를 자식 객체로 형변환하는 것은 불가능
+
+### `instanceof` 예약어
+- 자식객체 `instanceof` 부모클래스 : 이 객체가 부모클래스를 대신할 수 있는가? -> true
+- 부모객체 `instanceof` 자식클래스 : 이 객체가 자식클래스를 대신할 수 있는가? -> false
+
+<br>
+
+## 자식클래스 생성자로 선언한 부모클래스 타입의 객체에서 자식클래스에만 선언된 메소드를 사용할 수 있을까?
+
+아래 예제에 example() 메소드에는 세가지 경우로 생성한 객체가 존재한다.
+
+### 예제
+```java
+class Sample{
+	public static void main(String[] args){
+		Sample sample = new Sample();
+        sample.example();
+    }
+    // 예제 실행 메소드
+    public void example(){
+        // 1. 부모타입 객체 - 부모 생성자
+        Parent parent1 = new Parent();
+        parent1.printByParent(); // 결과 : This str is from Parent
+
+        // 2. 부모타입 객체 - 자식 생성자
+        Parent parent2 = new Child();
+        parent2.printByParent(); // 결과 : This str is from Parent with Overrinding method
+
+        // 3. 자식타입 객체 - 부모생성자(처럼 보이는 자식 생성자)
+        Child child1 = (Child)parent2;
+        child1.printByChild(); // 결과 : This str is from Child with Only child method
+	}
+}
+// 부모 클래스
+class Parent{
+    // 변수
+    String str = "Parent";
+
+    // 메소드
+    public void printByParent(){
+        System.out.println("This str is from " + str);
+    }
+}
+// 자식 클래스
+class Child extends Parent{
+    // 자식 클래스에 새로 선언한 메소드
+    String str2 = "Child";
+
+    // 오버라이딩 메소드
+    public void printByParent(){
+        System.out.println("This str is from " + str + " with Overrinding method");
+    }
+    // 자식 클래스에 새로 선언한 메소드
+    public void printByChild(){
+        System.out.println("This str is from " + str2 + " with Only child method");
+    }
+}
+```
+### 1. 부모 클래스 생성자로 부모타입의 객체를 생성한 경우
+이런 경우는 자식 클래스에 어떠한 영향을 받지 않는다.
+
+### 2. 자식 클래스 생성자로 부모타입 객체를 생선한 경우
+이런 경우에 자식 클래스에서 부모 클래스로부터 상속받은 변수나 메소드만 호출할 수 있다.
+
+즉, 자식 클래스에만 선언된 `str2` 변수나 `printByChild()` 메소드는 호출이 불가능하다.
+
+```java
+Parent parent2 = new Child();
+parent2.printByChild(); // 에러 발생(결국 부모타입이라)
+```
+
+또한 오버라이딩되어 자식 클래스에 재선언된 메소드나 변수는 오버라이딩된 상태로 호출된다.
+> 이런 현상을 책에서는 폴리몰피즘(다형성)으로 설명한 것!!(p.259 ~ 261)
+
+### 3. 자식타입 객체 - 부모생성자(처럼 보이는 자식 생성자)
+자식 클래스 타입의 객체를 생성하는데 **그 생성자를 자식생성자로 만든 부모타입의 객체로 만든 경우**이다.
+
+말이 많이 어렵지만 사실상 자식클래스 객체이지만 부모클래스 타입을 보이는 객체로 이해하면 되겠다.
+
+이 경우에 결국 실생성자의 출신이 어디냐를 본다면 **자식클래스**이지만 겉모습은 부모클래스를 타입으로 가지고 있기때문에 형변환을 통해 객체를 생성해줘야 한다.
+
+```java
+Child child2 = parent2; // 에러발생(겉보기는 부모타입)
+```
+
+하지만 형변환을 통해 객체를 생성했다면 자식클래스의 변수와 메소드를 호출한다.
+
+### 정리하자면
+- 결국 생성자에 따라 호출되는 변수나 메소드가 결정된다.
+- 그렇기에 오버라이딩된 변수나 메소드는 그 상태로 호출된다.
+- 자식 생성자로 만든 부모 객체는 겉으로는 부모의 형상을 띄기 때문에 이 객체를 이용해 자식 객체를 만들려면 형변환이 필요하다.
+- **겉** : 부모클래스 타입의 객체 / **안** : 오버라이딩되었거나 부모객체로부터 상속시킨 변수와 메소드만 호출 가능
+
+<br>
