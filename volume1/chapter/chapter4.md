@@ -1,7 +1,7 @@
 # :pushpin: Chapter4
 > 정보를 어디에 넣고 싶은데
 ## ✔️ 직접해 봅시다
-### **최종 코드**
+### **작성 코드**
 ```java
 public class ProfilePrint{
     public static void main(String args[]){
