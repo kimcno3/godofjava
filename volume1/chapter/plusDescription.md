@@ -397,10 +397,95 @@ Child child2 = parent2; // 에러발생(겉보기는 부모타입)
 
 하지만 형변환을 통해 객체를 생성했다면 자식클래스의 변수와 메소드를 호출한다.
 
-### 정리하자면
+<br>
+
+**정리하자면**
 - 결국 생성자에 따라 호출되는 변수나 메소드가 결정된다.
 - 그렇기에 오버라이딩된 변수나 메소드는 그 상태로 호출된다.
 - 자식 생성자로 만든 부모 객체는 겉으로는 부모의 형상을 띄기 때문에 이 객체를 이용해 자식 객체를 만들려면 형변환이 필요하다.
 - **겉** : 부모클래스 타입의 객체 / **안** : 오버라이딩되었거나 부모객체로부터 상속시킨 변수와 메소드만 호출 가능
 
 <br>
+
+## this와 super의 활용법 추가 설명
+
+**부모 클래스**
+```java
+class Animal {
+    String name;
+    int legCount;
+    boolean hasWing;
+    // 매개변수를 지정한 부모 생성자 선언
+    public Animal(String name, int legCount, boolean hasWing){
+        this.name = name;
+        this.legCount = legCount;
+        this.hasWing = hasWing;
+    }
+    public void printInfo(){
+        System.out.println("Name : " + name);
+        System.out.println("LegCount : " + legCount);
+        System.out.println("HasWing : " + hasWing);
+    }
+}
+```
+부모 클래스에서는 기본생성자가 아닌 인스턴스 변수에 매개변수로 받아온 값을 할당하는 생성자를 선언합니다.
+
+**자식 클래스**
+```java
+class Dog extends Animal {
+    // 새로운 변수 선언
+    String breed;
+
+    // 매개변수를 지정한 자식 생성자 선언
+    public Dog(String name, int legCount, boolean hasWing, String breed){
+        // 부모 생성자 호출, 상속받은 변수는 super()을 통해 부모 생성자를 호출하여 할당
+        super(name, legCount, hasWing);
+
+        // 상속받지 않은 변수는 this로 지정
+        this.breed = breed;
+    }
+    // 오버라이딩
+    public void printInfo(){
+        System.out.println("Name : " + name);
+        System.out.println("LegCount : " + legCount);
+        System.out.println("HasWing : " + hasWing);
+        // 추가코드
+        System.out.println("breed : " + breed);
+    }
+}
+```
+자식클래스 또한 매개변수값을 받는 생성자를 선언하고, 그 안에 super()를 활용해 상속받은 인스턴스 변수에 할당할 매개변수는 부모 클래스 생성자로 넘겨줍니다. 그리고 자식 클래스에서 새로 선언한 인스턴스 변수값은 this 예약어로 지정합니다.
+
+**메소드 실행**
+```java
+public class Sample{
+    public static void main(String[] args){
+        // 부모타입 객체 생성
+        Animal animal = new Animal("heri", 4, false);
+        System.out.println("<Animal class>");
+        // 매개변수값 출력1
+        animal.printInfo();
+
+        System.out.println();
+
+        // 자식타입 객체 생성
+        Dog dog = new Dog("coco", 4, false, "cocker");
+        System.out.println("<Dog class>");
+        // 매개변수값 출력2
+        dog.printInfo();
+    }
+}
+```
+**출력 결과**
+```
+<Animal class>
+Name : heri
+LegCount : 4
+HasWing : false
+
+<Dog class>
+Name : coco
+LegCount : 4
+HasWing : false
+breed : cocker
+```
