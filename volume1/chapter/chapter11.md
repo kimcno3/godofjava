@@ -27,8 +27,8 @@ API 설명문 중 일부 내용을 보면
 ### BigDecimal 클래스에서 나누기와 관련된 메소드들
 - `divide()` : 기본 나누기 역할 수행
 - `divideAndRemainder()` : 길이가 2인 배열을 생성
-    - [0] : `divide()`의 결과값
-    - [1] : `remainder()`의 결과값
+    - `[0]` : `divide()`의 결과값
+    - `[1]` : `remainder()`의 결과값
 - `divideToInteger()` : 나누기한 값을 정수로 치환하여 리턴
 
 <br>
