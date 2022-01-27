@@ -14,7 +14,7 @@
 <br>
 
 ## JVM, JRE, JDK 란?
-- JVC(Java Virtual Machine)
+- JVM(Java Virtual Machine)
     - 컴파일 이후, 바이트코드로 구성된 자바 파일(`.class` 확장자)을 기계어로 해석하여 운영체제에서 실행시키는 역할을 합니다.
 
 - JRE(Java Runtime Environment)
