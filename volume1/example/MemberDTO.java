@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class MemberDTO{
   public String name;
   public String phone;
@@ -17,5 +18,8 @@ public class MemberDTO{
       this.name = name;
       this.phone = phone;
       this.email = email;
+  }
+  public String toString(){
+      return "Name : " + name + ", Phone : " + phone + ", email : " + email;
   }
 }
