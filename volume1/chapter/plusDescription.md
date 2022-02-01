@@ -518,3 +518,56 @@ System.out.println(num1.add(num2)); // 5.3630
 즉, double타입의 변수를 BigDecimal 타입으로 형변환을 한 이후 두 값을 더했을 때 우리가 기대했던 값이 나온 것을 알 수 있다.
 
 이처럼 자바에서 기본자료형으로 실수를 연산하기보단 BigDecimal 타입을 활용하는 것이 필수적이다.
+
+<br>
+
+## hashcode()메소드 추가 설명
+hashCode() 메소드는 Java에서 Object 객체에 선언된 메소드 중 하나로 객체의 주소값을 int 타입의 16진수로 리턴하는 메소드이다.
+
+hashCode() 메소드는 equals()와 함께 Overriding 하여 사용하는 것이 일반적인데 이는 비교하는 두 객체의 값을 equals 메소드로 비교하여 같다는 것을 확인했어도 그 객체들이 할당된 주소값은 다른 것을 방지하기 위함이다.
+
+즉 두 객체가 가진 값이 같다면, 두 객체가 저장된 위치값도 같아야 한다는 것이다.
+
+위와 같은 설정을 위해 대부분의 IDE에서 제공해주는 hashcode()의 오버라이딩 기본코드가 있다.
+
+### hashcode() 오버라이딩 코드
+```java
+@Override
+public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((variableValue1 == null) ? 0 : variableValue1.hashCode());
+    result = prime * result + ((variableValue2 == null) ? 0 : variableValue2.hashCode());
+    result = prime * result + ((variableValue3 == null) ? 0 : variableValue3.hashCode());
+    return result;
+}
+```
+### 코드 설명
+1. hashcode로 전환할 변수의 값을 `variableValue1 ~ 3`으로 정한다.
+2. variableValue1의 값이 null 이라면 result에 0을 더한다.
+3. 그렇지 않다면 variableValue1의 hashCode()값을 result에 더한다.
+4. 모든 변수가 2~3번 과정을 반복한다.
+5. 최종 result 값을 리턴한다.
+
+위 코드가 호출되는 상황은 **이미 eqauls()를 통해 비교할 두 객체의 값이 동일하다는 것을 확인한 이후**이다. 그래서 두 객체에 선언된 변수나 메소드의 hashCode값들의 총합을 result로써 리턴하여 두 합계를 같게 만들어 주는 것이다. 그래야 두 객체의 hashcode, 즉 두 객체의 위치값이 같게 만들 수 있다.
+
+### 31을 사용하는 이유
+홀수이자 소수이니까!
+
+짝수를 곱한다 -> 비트위치를 왼쪽으로 한칸 shift한다.
+```
+1*2 == 2
+0001 * 0010 == 0010
+0001 -> 0010
+
+2*2 == 4
+10 * 10 == 0100
+0010 -> 0100
+
+3*2 == 6
+0011 * 0010 == 0110
+0011 -> 0110
+```
+짝수를 곱하는 것은 우측 비트에 0만 존재하게 만든다.
+
+> [참고사이트](https://johngrib.github.io/wiki/Object-hashCode/#project-lombok%EC%9D%98-hashcode-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%9E%90%EB%8F%99-%EA%B5%AC%ED%98%84)
