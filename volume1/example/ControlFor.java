@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ControlFor{
     public static void main(String[] args){
         ControlFor control = new ControlFor();

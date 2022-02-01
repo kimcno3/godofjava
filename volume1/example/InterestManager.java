@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class InterestManager{
     public static void main(String[] args){
         InterestManager sample = new InterestManager();

@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class OperatorComparision{
     public static void main(String args[]){
         OperatorComparision sample = new OperatorComparision();

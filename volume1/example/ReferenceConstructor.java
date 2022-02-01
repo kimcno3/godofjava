@@ -14,7 +14,7 @@ public class ReferenceConstructor{
         MemberDTO dto2 = new MemberDTO("Seonho");
         MemberDTO dto3 = new MemberDTO("Seonho", "010-xxxx-xxxx");
         MemberDTO dto4 = new MemberDTO("Seonho", "010-xxxx-xxxx", "kimcno3@naver.com");
-        System.out.println(dto4);
+        System.out.println(dto1 + ", "  + dto2 +  ", "  + dto3 +  ", "  + dto4);
     }
     public MemberDTO[] makeMembersArray(){
         MemberDTO[] dtos = new MemberDTO[3];

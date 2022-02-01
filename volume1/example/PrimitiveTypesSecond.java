@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class PrimitiveTypesSecond {
   byte byteDefault1;
   short shortDefault1;

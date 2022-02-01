@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class Operator{
     public static void main(String args[]){
         Operator sample = new Operator();

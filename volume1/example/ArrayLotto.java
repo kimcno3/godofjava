@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ArrayLotto{
     public static void main(String[] args){
         ArrayLotto sample = new ArrayLotto();

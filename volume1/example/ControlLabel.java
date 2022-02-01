@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ControlLabel{
     public static void main(String[] args){
         ControlLabel control = new ControlLabel();

@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class CarManager {
   public static void main(String args[]){
       Car dogCar = new Car();

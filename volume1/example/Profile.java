@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class Profile{
   String name;
   int age;

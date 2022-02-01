@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ControlElseIf{
     public static void main(String args[]){
         ControlElseIf control = new ControlElseIf();

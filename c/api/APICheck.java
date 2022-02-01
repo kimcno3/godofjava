@@ -6,8 +6,9 @@ public class APICheck {
         api.useDeprecated();
     }
     public void useDeprecated(){
-        String str = "abcde";
-        byte[] strBytes = str.getBytes(); // Deprecated Method of String Class
-        String convertedStr = new String(strBytes,0); // signal of deprecated Method
+        // String str = "abcde";
+        // byte[] strBytes = str.getBytes(); // Deprecated Method of String Class
+        // String convertedStr = new String(strBytes,0); // signal of deprecated Method
+
     }
 }

@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ManageHeight{
     // �ν��Ͻ� ���� ���� : ���� 5��, �л����� ����
     int[][] gradeHeights = new int[5][];

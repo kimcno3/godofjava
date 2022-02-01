@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class OperatorUnary{
     public static void main(String args[]){
         OperatorUnary sample = new OperatorUnary();

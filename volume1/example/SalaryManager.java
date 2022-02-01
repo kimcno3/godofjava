@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class SalaryManager{
     public static void main(String Args[]){
         SalaryManager person = new SalaryManager();

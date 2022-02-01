@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class PrimitiveTypes{
   public static void main(String args[]){
     PrimitiveTypes types = new PrimitiveTypes();

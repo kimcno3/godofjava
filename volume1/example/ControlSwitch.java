@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ControlSwitch{
     public static void main(String args[]){
         ControlSwitch control = new ControlSwitch();

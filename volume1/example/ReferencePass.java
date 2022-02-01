@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ReferencePass{
     public static void main(String[] args){
         ReferencePass sample = new ReferencePass();

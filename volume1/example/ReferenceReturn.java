@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ReferenceReturn{
     public static void main(String[] args){
         ReferenceReturn reference = new ReferenceReturn();

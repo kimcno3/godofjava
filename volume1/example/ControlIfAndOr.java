@@ -1,4 +1,4 @@
-package example;
+package volume1.example;
 public class ControlIfAndOr{
     public static void main(String args[]){
         ControlIfAndOr control = new ControlIfAndOr();

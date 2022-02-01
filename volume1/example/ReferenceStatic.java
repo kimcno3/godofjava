@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ReferenceStatic{
     String name = "Kim"; // �ν��Ͻ�����
     public static void main(String[] args){
@@ -9,6 +10,6 @@ public class ReferenceStatic{
         System.out.println("This is Static Method");
     }
     public static void staticMethodCallVariable(){
-        System.out.println(name);
+        // System.out.println(name);
     }
 }

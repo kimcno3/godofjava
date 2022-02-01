@@ -9,16 +9,16 @@ public class InheritanceCasting {
 
     }
     public void objectCast(){
-        ParentCasting parent = new ParentCasting();
-        ChildCasting child = new ChildCasting();
+        // ParentCasting parent = new ParentCasting();
+        // ChildCasting child = new ChildCasting();
 
-        ParentCasting paren2 = child;
-        ChildCasting child2 = (ChildCasting)parent;
+        // ParentCasting paren2 = child;
+        // ChildCasting child2 = (ChildCasting)parent;
     }
     public void objectCast2(){
-        ChildCasting child = new ChildCasting();
-        ParentCasting parent2 = child;
-        ChildCasting child2 = (ChildCasting)parent2;
+        // ChildCasting child = new ChildCasting();
+        // ParentCasting parent2 = child;
+        // ChildCasting child2 = (ChildCasting)parent2;
     }
     public void objectCastArray(){
         ParentCasting[] parentArray = new ParentCasting[3];

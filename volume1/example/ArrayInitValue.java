@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ArrayInitValue{
     public static void main(String[] args){
         ArrayInitValue initValue = new ArrayInitValue();

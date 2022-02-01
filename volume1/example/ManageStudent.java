@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 // 5
 public class ManageStudent{
     // 6

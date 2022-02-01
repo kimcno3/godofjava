@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class Student{
     // 1, �ν��Ͻ� ���� ����
     String name;

@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class OperatorCompound{
     public static void main(String args[]){
         OperatorCompound sample = new OperatorCompound();

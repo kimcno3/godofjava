@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ProfilePrint{
   public static void main(String args[]){
     ProfilePrint profile = new ProfilePrint();

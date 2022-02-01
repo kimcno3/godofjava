@@ -10,14 +10,14 @@ public class ControlIf{
         if(true) System.out.println("It's true");
         if(true)
             System.out.println("It's also true");
-        if(false) System.out.println("It's false");
+        // if(false) System.out.println("It's false");
     }
     public void ifElseStatement(){
         int intValue = 5;
-        
+
         if (intValue > 5) System.out.println("It's bigger than 5.");
         else System.out.println("It's smaller or equal than 5.");
-        
+
         if (intValue <= 5) System.out.println("It's smaller than 5.");
         else System.out.println("It's bigger than 5");
     }

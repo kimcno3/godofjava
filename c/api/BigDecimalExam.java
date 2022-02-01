@@ -1,11 +1,8 @@
 package c.api;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
-
-import org.omg.CosNaming.BindingHolder;
 
 public class BigDecimalExam {
     public static void main(String[] args) {

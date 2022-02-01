@@ -1,4 +1,5 @@
-package example;
+package volume1.example;
+
 public class ControlOfFlow{
     public static void main(String args[]){
         ControlOfFlow control = new ControlOfFlow();
