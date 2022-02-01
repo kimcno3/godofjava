@@ -1,5 +1,7 @@
 package c.inheritance;
 
+// import volume1.example.MemberDTO;
+
 public class Equals {
     public static void main(String[] args){
         Equals thisObject = new Equals();
