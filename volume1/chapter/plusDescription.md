@@ -521,6 +521,46 @@ System.out.println(num1.add(num2)); // 5.3630
 
 <br>
 
+## equals() 오버라이딩 코드 추가 설명
+```java
+@Override
+public boolean equals(Object obj){
+    if(this == obj) return true;
+    if(obj == null) return false;
+    if(this.getClass() != obj.getClass()) return false;
+    Student other = (Student) obj; // ??? 부모객체 생성자로 자식객체를 생성한다?? 에러가 왜 안나지???
+
+    if(name == null){
+        if(other.name != null) return false;
+    } else if(!name.equals(other.name)) return false;
+
+    if(address == null){
+        if(other.address != null) return false;
+    } else if(!address.equals(other.address)) return false;
+
+    if(phone == null){
+        if(other.phone != null) return false;
+    } else if(!phone.equals(other.phone)) return false;
+
+    if(email == null){
+        if(other.email != null) return false;
+    } else if(!email.equals(other.email)) return false;
+
+    return true;
+}
+```
+주석이 달린 코드를 보면 부모객체인 Object의 생성자를 자식객체로 형변환하여 자식객체를 생성한다. 이러면 에러가 발생할텐데(참조자료형 형변환시 주의점) 에러발생이 안한다.
+
+차근차근 코드를 살펴보니 그 이유를 알았다.
+
+먼저 equals() 에서 매개변수로 받는 객체는 어떤 클래스의 생성자로 만들어진 객체인지 모르기 때문에 가장 최상위 객체인 Object 타입으로 받아야만 한다.
+
+하지만 equals() 메소드가 사용되는 경우는 사실상 받아온 객체가 Object 객체의 하위객체, 즉 상속된 또 다른 클래스이거나 같은 클래스의 객체이다. 그리고 형변환 전에 getClass()를 활용해서 두 객체 타입이 다르다면 false를 리턴하고 메소드를 종료하게 설계되어 있다.
+
+그렇기 때문에 형변환 코드가 실행되는 경우는 **this와 obj 객체가 같은 클래스일 경우**에만 실행된다. 문제가 될 이유가 없게끔 기본 오버라이딩 코드는 설계되어 있었다.
+
+<br>
+
 ## hashcode()메소드 추가 설명
 hashCode() 메소드는 Java에서 Object 객체에 선언된 메소드 중 하나로 객체의 **주소값을 int 타입의 16진수로 리턴**하는 메소드이다.
 
