@@ -33,15 +33,12 @@ public class MemberDTO{
             return false;
         MemberDTO other = (MemberDTO) obj;
 
-        // 이제부터는 각 인스턴스 변수가 같은지 비교하는 작업 수행
-
         if (email == null) {
             if (other.email != null)
                 return false;
         } else if (!email.equals(other.email))
             return false;
 
-        // name과 같은 비교 수행
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -54,7 +51,6 @@ public class MemberDTO{
         } else if (!phone.equals(other.phone))
             return false;
 
-        // 모든 난관을 거쳐서 false를 리턴하지 않는 객체는 같은 객체로 생각해서 true를 리턴한다.
         return true;
     }
     @Override
