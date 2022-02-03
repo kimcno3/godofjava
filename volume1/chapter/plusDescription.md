@@ -1,7 +1,7 @@
 # :pushpin: 추가 내용 모음
 > 자바의 신 공부동안 추가이해를 위해 찾아본 내용 정리
 
-## 사용자변수와 시스템변수의 차이
+## ✔️ 사용자변수와 시스템변수의 차이
 - 사용자 변수
     - 로그인된 계정 내에서 사용하는 변수
     - 사용자 계정별로 설정되어 있는 PATH가 다릅니다.
@@ -13,7 +13,7 @@
 
 <br>
 
-## JVM, JRE, JDK 란?
+## ✔️  JVM, JRE, JDK 란?
 - JVM(Java Virtual Machine)
     - 컴파일 이후, 바이트코드로 구성된 자바 파일(`.class` 확장자)을 기계어로 해석하여 운영체제에서 실행시키는 역할을 합니다.
 
@@ -31,7 +31,7 @@
 
 <br>
 
-## java파일 실행시 파일명만 필요한 이유
+## ✔️  java파일 실행시 파일명만 필요한 이유
 JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 "JVM이 filename에 해당하는 파일을 실행한다"가 아니라 "filename을 가진 바이트코드에 main메소드가 존재한다" 라는 사실을 전달하는 의미입니다.
 
 그래서 확장자명을 포함하여 java.exe 파일을 실행시키면 확장자명까지 파일명으로 인식하여 main 메소드가 없다 또는 해당 파일명을 찾을 수 없습니다 라는 에러가 발생합니다.
@@ -39,14 +39,14 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 <br>
 
-## 멤버변수
+## ✔️  멤버변수
 **멤버변수(Instance Variable)** 는 객체를 생성해야만 사용할 수 있는 변수를 의미하며 **객체 생성시, 해당 객체의 메소드에서 사용가능**합니다.
 
 > [참고 사이트](https://digiconfactory.tistory.com/entry/%EC%9E%90%EB%B0%94-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC-5-9-%EB%B3%80%EC%88%98-%EC%9C%A0%ED%9A%A8%EB%B2%94%EC%9C%84-Scope)
 
 <br>
 
-## main 함수 실행 순서
+## ✔️  main 함수 실행 순서
 자바의 신 Github 저장소에서 찾은 **직접해봅시다** 의 [모범 코드](https://github.com/godofjava/GodOfJava2nd/blob/master/Chapter03/src/Profile.java)와 내가 작성한 코드를 비교해봤을 때, main() 메소드의 위치가 다른 것을 볼 수 있었다.
 
 모범 코드에서는 `main()` 메소드가 가장 먼저 작성되어 있고, 그 이후로 클래스의 필드와 메소드가 선언되어 있었다.
@@ -64,7 +64,7 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 <br>
 
-## 가비지 콜렉터(Garbage Collector)
+## ✔️  가비지 콜렉터(Garbage Collector)
 - **가비지(Garbage)** 란 객체나 배열을 가르키는 레퍼런스가 없는 경우를 의미합니다.
 - 메모리 확보 위해 가비지를 삭제하는 작업 자체는 **가비지 콜렉션**
 - 가비지 콜렉션을 하는 것이 **가비지 콜렉터**라고 합니다.
@@ -72,7 +72,7 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 <br>
 
-## `shortMax+1 === 32768` ?
+## ✔️  `shortMax+1 === 32768` ?
 **4장 89페이지**에서 **shortMax**에서 1을 더하면 최소값이 나와야 하는데 최대값을 넘어선 값이 나와 당황했다. 그 이유를 찾아보니 short 타입의 값에 단순히 1을 더하면 **int 타입으로 타입이 자동 변환된다**고 한다.
 
 **구체적으로 설명하면**
@@ -90,7 +90,7 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 <br>
 
-## 오버플로우(Intager Overflow)
+## ✔️  오버플로우(Intager Overflow)
 - 데이터 유형별 범위를 초과한 값을 할당한 경우 발생
 - `최대값+1`을 하면 `최소값`이 되는 경우를 의미합니다.
 - `최소값-1`을 하면 `최대값`이 되는 경우는 언더플로우라고 합니다.
@@ -150,7 +150,7 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 <br>
 
-## toSting()
+## ✔️  toSting()
 - `toSting()` 메소드는 객체가 가지고 있는 정보를 문자열로 리턴하는 메소드
 - Java의 모든 클래스 중 가장 최상위 클래스인 'Object' 클래스의 메소드로서 사용자가 생성하는 클래스가 기본적으로 상속받게 되는 메소드
 - 객체가 가지고 있는 `toSting()` 메소드의 기본값은 '타입이름@고유번호'의 형태
@@ -160,7 +160,7 @@ JVM을 구동하기 위해 `java filename` 명령어를 실행하는데, 이는 
 
 <br>
 
-## DTO 추가 설명
+## ✔️  DTO 추가 설명
 DAO(Data Access Object)
 - DTO로 받은 데이터를 데이터베이스에 저장하거나 가져오는 역할을 수행하는 객체
 
@@ -174,7 +174,7 @@ VO(Value Object)
 
 <br>
 
-## static 변수 추가 설명
+## ✔️  static 변수 추가 설명
 **예제 코드**
 ```java
 public class ReferenceStaticVariable{
@@ -205,7 +205,7 @@ public class ReferenceStaticVariable{
 
 <br>
 
-## super() 상세 내용
+## ✔️  super() 상세 내용
 p.245 ~ 247에 `super()`에 대한 설명이 나오는데 몇몇 문장들이 이해가 안가서 추가 설명을 찾아봤다.
 
 `super()`가 정확히 어떤 의미를 가지는지 간단하게 설명하자면 **부모 클래스**를 가르킨다고 말할 수 있다. 반대의 개념으로는 `this`가 될 것이다.
@@ -302,7 +302,7 @@ class Child extends Parent{
 
 <br>
 
-## 참조자료형 형변환 & `instanceof` 예약어 활용시 주의사항
+## ✔️  참조자료형 형변환 & `instanceof` 예약어 활용시 주의사항
 **참조자료형 형변환**
 - 자식 객체를 부모 객체로 형변환은 가능
 - 부모 객체를 자식 객체로 형변환하는 것은 불가능
@@ -313,7 +313,7 @@ class Child extends Parent{
 
 <br>
 
-## 참고자료형 형변환 추가 설명
+## ✔️  참고자료형 형변환 추가 설명
 
 아래 예제에 example() 메소드에는 세가지 경우로 생성한 객체가 존재한다.
 
@@ -407,7 +407,7 @@ Child child2 = parent2; // 에러발생(겉보기는 부모타입)
 
 <br>
 
-## this와 super의 활용법 추가 설명
+## ✔️  this와 super의 활용법 추가 설명
 
 **부모 클래스**
 ```java
@@ -492,7 +492,7 @@ breed : cocker
 
 <br>
 
-## BigDecimal 클래스를 사용하는 이유
+## ✔️  BigDecimal 클래스를 사용하는 이유
 JAVA에서 기본자료형으로 활용되는 float나 double을 사용하지 않고 BigDecimal 클래스를 사용하는 이유는 BigDecimal 클래스를 활용하면 실수를 계산하는데 더 정확한 계산이 가능하다 한다.
 
 이를 자세히 알아보기 위해 먼저 기본 자료형으로 실수 계산시 발생할 수 있는 문제점을 보자.
@@ -521,7 +521,7 @@ System.out.println(num1.add(num2)); // 5.3630
 
 <br>
 
-## equals() 오버라이딩 코드 추가 설명
+## ✔️  equals() 오버라이딩 코드 추가 설명
 ```java
 @Override
 public boolean equals(Object obj){
@@ -561,7 +561,7 @@ public boolean equals(Object obj){
 
 <br>
 
-## hashcode()메소드 추가 설명
+## ✔️  hashcode()메소드 추가 설명
 hashCode() 메소드는 Java에서 Object 객체에 선언된 메소드 중 하나로 객체의 **주소값을 int 타입의 16진수로 리턴**하는 메소드이다.
 
 hashCode() 메소드는 equals()와 함께 Overriding 하여 사용하는 것이 일반적인데 이는 비교하는 두 객체의 값을 equals()로 비교하여 같다는 것을 확인했어도 그 객체들이 할당된 주소값은 다른 것을 방지하기 위함이다.
