@@ -2,7 +2,7 @@ package c.service;
 
 import c.inheritance.MemberDTO;
 
-public class MemberManagerImpl2 implements MemberManager{
+public class MemberManagerImpl2 extends MemberMangerAbstract{
     @Override
     public boolean addMember(MemberDTO member){
         return true;
