@@ -614,3 +614,52 @@ Prime 변수에 31을 할당하고 result에 이 값을 곱하여 합계를 구�
 소수를 사용하지 않아도 hashCode값 생성에는 큰 문제가 생기지 않지만, 짝수를 피해야하는 것은 명백한 이유가 존재한다는 것을 기억하면 좋을 듯 하다.
 
 > [참고사이트](https://johngrib.github.io/wiki/Object-hashCode/#%EC%9D%B4%EC%83%81%EC%A0%81%EC%9D%B8-%ED%95%B4%EC%8B%9C-%ED%95%A8%EC%88%98%EC%97%90-%EA%B0%80%EA%B9%8C%EC%9A%B4-%ED%95%A8%EC%88%98-%EB%A7%8C%EB%93%A4%EA%B8%B0)
+
+<br>
+
+## ✔️ enum 생성자
+enum 클래스는 객체를 생성할 때는 다음과 같이 상수를 지정해줘야만 생성이 된다.
+
+`enum 클래스명.상수명`
+
+### 예제코드
+```java
+public class Sample{
+    public enum EnumName{
+        PRIME_ONE,
+        PRIME_TWO;
+    }
+    public static void main(String[] args){
+        EnumName primeNumber = EnumName.PRIME_ONE; // PRIME_ONE
+        EnumName primeNumber2 = EnumName; // 에러 발생
+    }
+}
+```
+
+또한 각 상수 선언시, 각 상수에 대응하는 매개변수를 지정할 수 있고 해당 매개변수를 활용한 생성자를 private나 package-protect 로 선언할 수 있다.
+
+`상수명(매개변수값)`
+
+### 예제코드2
+```java
+public class Sample{
+    public enum EnumName{
+        PRIME_ONE(1), // 상수에 대응하는 매개변수값을 소괄호에 지정
+        PRIME_TWO(2);
+
+        private final int number;
+
+        // 생성자 선언
+        EnumName(int number){
+            this.number = number; // 매개변수값을 인스턴스 변수에 지정
+        }
+    }
+    public static void main(String[] args){
+        EnumName primeNumber = EnumName.PRIME_ONE;
+        System.out.println(primeNumber.number); // 1
+    }
+}
+```
+출력된 값은 상수인 PRIME_ONE의 인스턴스 변수인 number의 값이라고 할 수 있다.
+
+> [참고사이트](https://seeminglyjs.tistory.com/257)
