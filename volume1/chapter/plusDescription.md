@@ -805,3 +805,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
 ```
+> [참고사이트](https://velog.io/@psk84/.gitignore-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0#gitignore%EC%9D%B4%EB%9E%80)
