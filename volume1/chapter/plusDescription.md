@@ -663,3 +663,145 @@ public class Sample{
 출력된 값은 상수인 PRIME_ONE의 인스턴스 변수인 number의 값이라고 할 수 있다.
 
 > [참고사이트](https://seeminglyjs.tistory.com/257)
+
+<br>
+
+## ✔️gitignore 파일 활용법
+### gitignore 파일이란?
+원격 저장소에서 사용되지 않는 파일들을 지정하여 커밋하지 못하게 설정하는 파일로 설정된 확장자 파일은 commit track에 올라오지 않는다.
+
+자바의 경우, `.metadata` 파일들이 commit track에 올라오는 것을 막기 위해 생성하는 파일이다.
+
+### 설정 순서
+1. gitignore 파일을 생성한다.
+    - 파일 생성시 최상위 디렉토리에 위치해야 한다.
+    - [https://www.gitignore.io/](https://www.toptal.com/developers/gitignore)을 이용하면 사용하는 OS, 프로그래밍 언어, IDE에 맞는 gitingore파일을 생성할 수 있다.
+2. 생성한 gitignore 파일을 commit 및 원격저장소에 push한다.
+3. 이후 커밋할 때 설정한 파일들은 track에 올라오지 않는다.
+
+**windows, java, eclipse 전용 gitignore 파일**
+```
+
+# Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,windows
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+.apt_generated_test/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+# Uncomment this line if you wish to ignore the project description file.
+# Typically, this file would be tracked if it contains build/dependency configurations:
+#.project
+
+### Eclipse Patch ###
+# Spring Boot Tooling
+.sts4-cache/
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
+```
