@@ -841,3 +841,35 @@ JAVA에서 String 객체를 생성하는 방법은 두가지가 있다.
 - 객체를 비교할 땐 equals()를 사용할 것
 
 을 권장하는 것이다.
+
+## ✔️ String, CharSequence 추가 설명
+### String 객체 리터럴 생성 방법(`""` 사용)으로 CharSequence 객체를 선언
+
+CharSequence는 인터페이스이며 String은 클래스이다. 그리고 String은 CharSequence를 구현한 클래스이다.
+
+그렇기 때문에 CharSequence 객체를 선언할 때, 생성자는 String 클래스의 생성자를 사용할 수 있는 것이다.
+
+상속은 아니지만 비유를 하자면 부모가 CharSequence, 자식이 String인 셈이다. 그래서 범주가 더 넓은 String으로 CharSequence 객체를 선언할 수 있다.
+
+또한 String 외에도 StringBuffer, StringBuilder 클래스도 CharSequence를 구현한 클래스들이기 때문에 위 세가지 클래스 생성자로 CharSequence 객체를 생성할 수 있다.
+
+그래서 한 메소드에서 매개변수로 위 세 클래스의 객체를 활용하는 경우, CharSequence 객체로 매개변수 객체를 지정해 주는 것이 좋다. 객체는 CharSequence여도 호출되는 **변수나 메소드는 생성자의 클래스로 결정**되기 때문에 오히려 메소드에 유연성을 제공할 수 있다.
+
+**예제**
+```java
+public class Sample{
+    public static void main(String[] args){
+        // String 객체 생성
+        String str = "I'm String";
+        // String 객체를 매개변수로 전달
+        Sample.callStr(str);
+    }
+    // CharSequence 객체를 매개변수로 지정한 메소드
+    public static void callStr(CharSequence str){
+        // 매개변수에 저장된 값과 클래스를 출력
+        System.out.println(str + " | " + str.getClass()); // I'm String | java.lang.String
+    }
+}
+```
+
+예제 결과를 보면 `callStr()`메소드는 CharSequence 객체를 매개변수로 받지만 String 객체가 넘어가도 에러없이 코드가 작동한다. 그리고 매개변수의 클래스도 String으로 생성자에 따라 결정되는 것을 볼 수 있다.
