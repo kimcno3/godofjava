@@ -1,4 +1,4 @@
-# :pushpin: Chapter14
+# :pushpin: Chapter15
 
 ## ✔️직접해봅시다.
 ### 작성 코드
@@ -90,7 +90,9 @@ class contains ss
 - CharSequence : 문자열을 다루기 위한 메소드가 정의되어 있는 인터페이스
 
 ### 3. String 클래스의 생성자 중에서 가장 의미없는 (사용할 필요가 없는) 생성자는 무엇인가요?
-`String()`
+`String()`, 기본생성자
+
+이유는 생성과 동시에 GC의 대상이 되어버린다.
 
 ### 4. String 문자열을 byte 배열로 만드는 메소드의 이름은 무엇인가요?
 `getBytes()`
